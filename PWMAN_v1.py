@@ -3,12 +3,17 @@ from functools import partial
 from tkinter import *
 from tkinter import messagebox
 from cryptography.fernet import Fernet
+import pyperclip
+
+
 
 class gestionnaire():
     def __init__(self):
         self.search_var, self.site, self.username, self.password, self.fenetre_menu, self.liste, self.add_window = '', '', '', '', '', '',''
         self.init_backup()
         self.init_window()
+
+
 
     def init_backup(self):
         try:
@@ -28,6 +33,8 @@ class gestionnaire():
                 key_file.write(Fernet.generate_key())
                 key_file.close()
                 
+
+
     def init_window(self):
         self.fenetre_menu = Tk()
         self.search_var = StringVar()
@@ -51,6 +58,8 @@ class gestionnaire():
         search_bouton.pack()
         self.fenetre_menu.mainloop()
 
+
+
     def add_credentials(self):
         self.add_window = Toplevel(self.fenetre_menu)
         self.site = StringVar()
@@ -71,6 +80,8 @@ class gestionnaire():
                                 command=partial(self.backupsite))
         bouton_valider.pack(pady=20)
         self.add_window.mainloop()
+
+
 
     def backupsite(self):
         f = open("data/data1.BLUE", "a")
@@ -108,9 +119,14 @@ class gestionnaire():
             encrypted_usr = f.readline()
             encrypted_passw = f.readline()
             messagebox.showinfo(str("INFORMATIONS DE : " + site), b"username :: \n" + fernet.decrypt(encrypted_usr)+ b"\npassword :: \n"+fernet.decrypt(encrypted_passw))
+            pyperclip.copy(str(fernet.decrypt(encrypted_passw)).strip('b').strip("'"))
+            messagebox.showinfo("MOT DE PASSE COPIE", "Mot de passe copié dans le press-papier, \nvous n'avez plus qu'à le coller dans le formulaire du site")
+
         except:
             messagebox.showerror(str("SITE INTROUVABLE : " + site),
                                  "Verifiez que le site que vous avez demandé est bien dans la liste.")
 
 
-gestionnaire1 = gestionnaire()
+
+if __name__ == "__main__":
+    gestionnaire1 = gestionnaire()
