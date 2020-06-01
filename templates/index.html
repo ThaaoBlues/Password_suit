@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table,
+td {
+    border: 1px solid #333;
+}
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+table.tableau{
+    margin-left:auto; 
+    margin-right:auto;
+    text-align: center;
+    color: blue;
+}
+
+a
+
+
+body {
+    text-align:center;
+    background-color: slategrey;
+}
+textarea {
+  width: 215px;
+  height: 320px;
+}
+
+
+
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PASSWORD MANAGER</title>
+</head>
+<body style="text-align: center;" >
+    <textarea style="overflow-y: scroll;" >
+        {% for site in liste %}
+        ===========================
+{{ site }}===========================
+        {% endfor %}
+    </textarea>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button type="button"  onclick="window.location.href='/add_data/'">Ajouter des données d'authetification</button>
+    <br>
+    <br>
+    <button type="button" onclick="window.location.href='/search/'">Voir les données de ce site</button>
+    <input id="example" type="text" name="website_name" value="exemple.com"></input>
+    <br>
+    <br>
+    <button type="button"  onclick="window.location.href='/mdp_generator/'">Générer un mot de passe fort</button>
+</body>
+</html>
