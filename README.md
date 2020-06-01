@@ -6,5 +6,8 @@ PWMAN is a extremely simple password manager based on a ugly ui but i'm not a gr
 so please, use it on an USB key to avoid all risks. to delete a website in the password manager, just go to the data folder, 
 then websites and delete the file named by <the name you've choosen>.data*
 
+PWMAN_v2 basically PWMAN but with a new html based UI and with PWGEN directly integrated in.
+
+
 compiling these scripts is possible, just use the "auto-py-to-exe" tool : https://pypi.org/project/auto-py-to-exe/ 
  
