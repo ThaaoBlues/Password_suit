@@ -79,7 +79,7 @@ def add_data():
 def mdp_generator():
     #create the root tk to show message box
     root = Tk()
-    root.withdraw()
+    #Tk().withdraw()
     root.lift()
 
     #generate password
@@ -90,10 +90,10 @@ def mdp_generator():
 
     messagebox.showinfo("MOT DE PASSE",
     "MOT DE PASSE COPIE DANS LE PRESSE PAPIER :: \n {}".format(password))
-    root.destroy()
     #copy in clipboard
     pyperclip.copy(password)
 
+    root.destroy()
     #redirect
     return render_template("index.html",liste = website_list())
 
@@ -105,10 +105,15 @@ def mdp_generator():
 
 def show_search_results():
     print("search")
-    #site = request.form['website_name']
-    site = "site"
-    search(site)
-    return render_template("index.html",liste = website_list())
+    if request.method == "POST":
+        site = request.form['website_name']
+        
+        print(site)
+        search(site)
+        return render_template("index.html",liste = website_list())
+
+    else:
+        return render_template("index2.html",liste = website_list())
 
 
 
@@ -154,7 +159,7 @@ def backupsite(site,username,password):
 def search(site):
     #create the root tk to show message box
     root = Tk()
-    root.withdraw()
+    #root.withdraw()
     root.lift()
     try:
         #get decrypt key
@@ -173,7 +178,7 @@ def search(site):
     except:
         messagebox.showerror(str("SITE INTROUVABLE : " + site),
                              "Verifiez que le site que vous avez demandé est bien dans la liste.")
-    root.destroy()
 
+    root.destroy()
 #run app
 ui.run()
